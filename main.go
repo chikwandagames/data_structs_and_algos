@@ -2,34 +2,35 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 )
 
 func main() {
-	nums := []int{2, 7, 11, 15}
-	// nums := []int{3, 2, 4}
-	var target = 9
-
-	r := twoSum(nums, target)
+	r := reverse(1534236469)
 	fmt.Println(r)
-
 }
 
-func twoSum(nums []int, target int) []int {
-	size := len(nums)
-	var result []int
+func reverse(x int) int {
 
-	var i, j int
+	s := strconv.Itoa(x)
+	var ns string
 
-	for i = 0; i < size; i++ {
-		for j = 0; j < size; j++ {
-			if i != j {
-				if nums[i]+nums[j] == target {
-					return append(result, i, j)
-				}
-			}
+	for i := len(s) - 1; i >= 0; i-- {
+		if string(s[i]) == "-" {
+			continue
 		}
+		// fmt.Println(string(s[i]))
+		ns += string(s[i])
+	}
+	num, _ := strconv.Atoi(ns)
+	// fmt.Println(ns)
+
+	if num > 2147483647 || num < -2147483648 {
+		return 0
+	}
+	if x < 0 {
+		return 0 - num
 	}
 
-	return result
-
+	return num
 }
