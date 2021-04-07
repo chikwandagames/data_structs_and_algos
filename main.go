@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
 	nums := []int{2, 7, 11, 15}
@@ -13,31 +15,21 @@ func main() {
 }
 
 func twoSum(nums []int, target int) []int {
-
+	size := len(nums)
 	var result []int
 
-	for i := 0; i < len(nums); i++ {
-		var seen []int
-		// Loop from the end len(nums) -1
-		for j := len(nums) - 1; j > -1; j-- {
-			// fmt.Printf("i: %v \n", i)
-			// fmt.Printf("j: %v \n", j)
+	var i, j int
+
+	for i = 0; i < size; i++ {
+		for j = 0; j < size; j++ {
 			if i != j {
-				seen = append(seen, j)
-			}
-
-		}
-
-		fmt.Println(seen)
-		for _, val := range seen {
-			// fmt.Println("i:", nums[i])
-			// fmt.Println("val: ", nums[val])
-			if nums[i]+nums[val] == target {
-				// fmt.Println("yesss")
-				return append(result, i, val)
+				if nums[i]+nums[j] == target {
+					return append(result, i, j)
+				}
 			}
 		}
 	}
 
 	return result
+
 }
